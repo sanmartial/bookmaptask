@@ -8,17 +8,17 @@ public class DataServiceImpl implements DataService {
     public int processingData(String line, String data) {
         String[] datas = data.split(" ");
 
-        int start = Integer.parseInt(datas[0]);
+        int start = Integer.parseInt(datas[0]) - 1;
         int end = Integer.parseInt(datas[1]);
-        int position = Integer.parseInt(datas[2]);
+        int position = Integer.parseInt(datas[2]) - 1;
         int countInput = 0;
 
-        String subLine = line.substring(start - 1, end);
+        String subLine = line.substring(start, end);
 
-        char target = subLine.charAt(position - 1);
+        char target = subLine.charAt(position);
 
         for (int i = 0; i < subLine.length(); i++) {
-            if (target == subLine.charAt(i) && i < position) {
+            if (target == subLine.charAt(i) && i <= position) {
                 countInput++;
             }
         }
@@ -34,6 +34,7 @@ public class DataServiceImpl implements DataService {
             if (i == subLine.length() - 1) {
                 return -1;
             }
+
             i++;
         }
 
